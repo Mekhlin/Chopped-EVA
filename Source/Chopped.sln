@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvaLifeSupport", "EvaLifeSupport\EvaLifeSupport.csproj", "{7C6C519E-F15A-4EAB-AC16-C78AE46B237E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chopped", "Chopped\Chopped.csproj", "{E79F8472-F57A-4485-B647-04A976171AEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7C6C519E-F15A-4EAB-AC16-C78AE46B237E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C6C519E-F15A-4EAB-AC16-C78AE46B237E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C6C519E-F15A-4EAB-AC16-C78AE46B237E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C6C519E-F15A-4EAB-AC16-C78AE46B237E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E79F8472-F57A-4485-B647-04A976171AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E79F8472-F57A-4485-B647-04A976171AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E79F8472-F57A-4485-B647-04A976171AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E79F8472-F57A-4485-B647-04A976171AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2EF3251-94B7-4AD8-B7EE-E0CF4D5C4C34}
+		SolutionGuid = {BA4154A6-EB04-462F-BEAB-65490D958F5F}
 	EndGlobalSection
 EndGlobal

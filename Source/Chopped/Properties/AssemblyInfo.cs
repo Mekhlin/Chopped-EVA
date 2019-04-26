@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EvaLifeSupport")]
+[assembly: AssemblyTitle("Chopped")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EvaLifeSupport")]
+[assembly: AssemblyProduct("Chopped")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7c6c519e-f15a-4eab-ac16-c78ae46b237e")]
+[assembly: Guid("e79f8472-f57a-4485-b647-04a976171aeb")]
 
 // Version information for an assembly consists of the following four values:
 //

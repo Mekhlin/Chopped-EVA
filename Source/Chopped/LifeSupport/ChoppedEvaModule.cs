@@ -1,10 +1,12 @@
 ﻿using System;
+using Chopped.Settings;
 
-namespace EvaLifeSupport
+namespace Chopped.LifeSupport
 {
-    public class EvaLifeSupportModule : PartModule
+    public class ChoppedEvaModule : PartModule
     {
         private int _minutes;
+        private bool _enabled;
 
         public override void OnStart(StartState state)
         {
@@ -12,6 +14,8 @@ namespace EvaLifeSupport
             {
                 if (vessel.loaded && vessel.vesselType == VesselType.EVA)
                 {
+                    _enabled = HighLogic.CurrentGame.Parameters.CustomParams<ChoppingProperties>().EnableChopping;
+                    ChoppingProperties.ApplySettings(this);
                     Log($"{vessel.name} is on EVA");
                 }
             }
@@ -25,7 +29,8 @@ namespace EvaLifeSupport
         {
             try
             {
-                if (vessel == null || part == null || vessel.loaded == false || vessel.vesselType != VesselType.EVA) return;
+                if (_enabled == false) return;
+                if (vessel == null || part == null || !vessel.loaded || vessel.vesselType != VesselType.EVA) return;
                 if (TimeSpan.FromSeconds(vessel.missionTime).Minutes != _minutes + 1)
                 {
                     CheckHealth();
@@ -35,7 +40,7 @@ namespace EvaLifeSupport
                 _minutes++;
                 Log($"{vessel.name} has been on EVA in {_minutes} minutes");
                 var units = GetResource(part, 1);
-                Log($"{units} EVA LS units supplied");
+                Log($"{units} EVA LS units supplied"); 
 
                 CheckHealth();
             }
@@ -49,8 +54,8 @@ namespace EvaLifeSupport
         {
             try
             {
-                if (part == null || vessel == null || vessel.loaded == false) return 0;
-                var resource = fromPart.Resources["EvaLS"];
+                if (!_enabled || part == null || vessel == null || !vessel.loaded) return 0;
+                var resource = fromPart.Resources[ChoppingProperties.ResourceName];
                 double supplied = 0;
 
                 if (resource.flowState == false)
@@ -79,26 +84,22 @@ namespace EvaLifeSupport
 
         private void CheckHealth()
         {
-            if (part == null || vessel == null || vessel.loaded == false) return;
-            var resource = part.Resources["EvaLS"];
+            if (!_enabled || part == null || vessel == null || !vessel.loaded) return;
+            var resource = part.Resources[ChoppingProperties.ResourceName];
             if (resource != null && resource.amount >= 1) return;
 
             var crewMembers = vessel.GetVesselCrew().ToArray();
-            Log($"Number of crewmembers = {crewMembers.Length}");
             if (crewMembers.Length != 1) return;
             ScreenMessages.PostScreenMessage($"{vessel.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
             var doomed = crewMembers[0];
-
-            //vessel.RemoveCrew(doomed);
-            //vessel.CrewListSetDirty();
-            vessel.DestroyVesselComponents();
-            vessel.Die();
+            part?.Die();
+            vessel?.Die();
             doomed.rosterStatus = ProtoCrewMember.RosterStatus.Dead;
         }
 
         private static void Log(string message)
         {
-            print($"[EvaLifeSupport] {nameof(EvaLifeSupportModule)} {message}");
+            print($"[{nameof(Chopped)}] {nameof(ChoppedEvaModule)} - {message}");
         }
     }
 }
