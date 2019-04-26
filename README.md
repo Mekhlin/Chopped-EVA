@@ -1,3 +1,3 @@
-# EVA Life Support (EVA-LS)
+# Chopped EVA
 
 EVA Life Support for Kerbal Space Program.
