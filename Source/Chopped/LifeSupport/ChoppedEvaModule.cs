@@ -5,20 +5,17 @@ namespace Chopped.LifeSupport
 {
     public class ChoppedEvaModule : PartModule
     {
-        //private int _minutes;
-        private bool _enabled;
+        public bool EnableChopping { get; set; }
+        public bool ReportMissing { get; set; }
 
         public override void OnStart(StartState state)
         {
             try
             {
-                if (vessel.loaded && vessel.vesselType == VesselType.EVA)
-                {
-                    _enabled = HighLogic.CurrentGame.Parameters.CustomParams<ChoppingProperties>().EnableChopping;
-                    ChoppingProperties.ApplySettings(this);
-                    Log($"{vessel.name} is on EVA");
-                    UpdateResourceAmount();
-                }
+                if (!vessel.loaded || vessel.vesselType != VesselType.EVA) return;
+                ChoppingProperties.ApplySettings(this);
+                Log($"{vessel.name} is on EVA");
+                UpdateResourceAmount();
             }
             catch (Exception ex)
             {
@@ -42,7 +39,7 @@ namespace Chopped.LifeSupport
         {
             try
             {
-                if (_enabled == false) return;
+                if (EnableChopping == false) return;
                 UpdateResourceAmount();
             }
             catch (Exception ex)
@@ -64,7 +61,7 @@ namespace Chopped.LifeSupport
                 if (resource.amount.Equals(resource.maxAmount - unitsUsed)) return;
                 if (resource.amount.Equals(0) || unitsUsed >= resource.amount)
                 {
-                    KillCrewMember();
+                    Chop();
                     return;
                 }
                 resource.amount = resource.maxAmount - unitsUsed;
@@ -75,17 +72,19 @@ namespace Chopped.LifeSupport
             }
         }
 
-        private void KillCrewMember()
+        private void Chop()
         {
             try
             {
+                if (part == null || vessel == null || !vessel.loaded) return;
+
                 var crewMembers = vessel.GetVesselCrew().ToArray();
                 if (crewMembers.Length != 1) return;
                 ScreenMessages.PostScreenMessage($"{vessel.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+
                 var doomed = crewMembers[0];
-                doomed.rosterStatus = ProtoCrewMember.RosterStatus.Dead;
+                doomed.rosterStatus = ReportMissing ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
                 part?.Die();
-                vessel?.Die();
             }
             catch (Exception ex)
             {
