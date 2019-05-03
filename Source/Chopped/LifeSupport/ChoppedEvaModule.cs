@@ -54,17 +54,17 @@ namespace Chopped.LifeSupport
             {
                 if (vessel == null || !vessel.loaded) return;
 
-                var unitsUsed = TimeSpan.FromSeconds(vessel.missionTime).Minutes;
-                if (unitsUsed == 0) return;
+                var minutes = TimeSpan.FromSeconds(vessel.missionTime).Minutes;
+                if (minutes == 0) return;
 
                 var resource = part.Resources[ChoppingProperties.ResourceName];
-                if (resource.amount.Equals(resource.maxAmount - unitsUsed)) return;
-                if (resource.amount.Equals(0) || unitsUsed >= resource.amount)
+                if (!resource.amount.Equals(resource.maxAmount - minutes))
                 {
-                    Chop();
-                    return;
+                    resource.amount = resource.maxAmount - minutes;
                 }
-                resource.amount = resource.maxAmount - unitsUsed;
+
+                if (!resource.amount.Equals(0)) return;
+                Chop();
             }
             catch (Exception ex)
             {
@@ -80,9 +80,9 @@ namespace Chopped.LifeSupport
 
                 var crewMembers = vessel.GetVesselCrew().ToArray();
                 if (crewMembers.Length != 1) return;
-                ScreenMessages.PostScreenMessage($"{vessel.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
 
                 var doomed = crewMembers[0];
+                ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                 doomed.rosterStatus = ReportMissing ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
                 part?.Die();
             }
