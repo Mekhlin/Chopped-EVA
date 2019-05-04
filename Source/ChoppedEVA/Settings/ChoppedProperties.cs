@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Chopped.LifeSupport;
+using ChoppedEVA.LifeSupport;
 
-namespace Chopped.Settings
+namespace ChoppedEVA.Settings
 {
     public class ChoppingProperties : GameParameters.CustomParameterNode
     {

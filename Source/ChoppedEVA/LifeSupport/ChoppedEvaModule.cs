@@ -1,7 +1,7 @@
 ﻿using System;
-using Chopped.Settings;
+using ChoppedEVA.Settings;
 
-namespace Chopped.LifeSupport
+namespace ChoppedEVA.LifeSupport
 {
     public class ChoppedEvaModule : PartModule
     {
@@ -94,7 +94,7 @@ namespace Chopped.LifeSupport
 
         private static void Log(string message)
         {
-            print($"[{nameof(Chopped)}] {nameof(ChoppedEvaModule)} - {message}");
+            print($"[{nameof(ChoppedEVA)}] {nameof(ChoppedEvaModule)} - {message}");
         }
     }
 }

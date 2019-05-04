@@ -7,7 +7,7 @@
     <ProjectGuid>{E79F8472-F57A-4485-B647-04A976171AEB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Chopped</RootNamespace>
+    <RootNamespace>ChoppedEVA</RootNamespace>
     <AssemblyName>ChoppedEva</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>C:\KSPDev\GameData\Mekhlin\Chopped\Plugins\</OutputPath>
+    <OutputPath>C:\KSPDev\GameData\Mekhlin\ChoppedEVA\Plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
