@@ -1,5 +1,6 @@
 ﻿using System;
 using ChoppedEVA.Settings;
+using UnityEngine;
 
 namespace ChoppedEVA.LifeSupport
 {
@@ -94,7 +95,7 @@ namespace ChoppedEVA.LifeSupport
 
         private static void Log(string message)
         {
-            print($"[{nameof(ChoppedEVA)}] {nameof(ChoppedEvaModule)} - {message}");
+            Debug.Log($"[{nameof(ChoppedEVA)}] {nameof(ChoppedEvaModule)} - {message}");
         }
     }
 }
