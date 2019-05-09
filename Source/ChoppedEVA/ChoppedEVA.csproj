@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="LifeSupport\ChoppedEvaModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\ChoppedProperties.cs" />
+    <Compile Include="Settings\ChoppedEvaSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,12 +3,12 @@ using ChoppedEVA.LifeSupport;
 
 namespace ChoppedEVA.Settings
 {
-    public class ChoppingProperties : GameParameters.CustomParameterNode
+    public class ChoppedEvaSettings : GameParameters.CustomParameterNode
     {
         public const string ResourceName = "EvaLS";
         public override string Title { get; } = "Chopping Rules";
-        public override string DisplaySection { get; } = "EVA chopping";
-        public override string Section { get; } = "choppedEva";
+        public override string Section { get; } = "Chopped EVA";
+        public override string DisplaySection { get; } = "Chopped EVA";
         public override int SectionOrder { get; } = 3;
         public override GameParameters.GameMode GameMode { get; } = GameParameters.GameMode.ANY;
         public override bool HasPresets { get; } = false;
@@ -29,7 +29,7 @@ namespace ChoppedEVA.Settings
 
         public static void ApplySettings(ChoppedEvaModule evaModule)
         {
-            var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppingProperties>();
+            var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
             if (properties.EnableChopping)
             {
                 evaModule.EnableChopping = properties.EnableChopping;
