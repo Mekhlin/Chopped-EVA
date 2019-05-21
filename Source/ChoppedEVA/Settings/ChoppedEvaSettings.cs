@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using ChoppedEVA.LifeSupport;
 
 namespace ChoppedEVA.Settings
 {
@@ -25,28 +24,6 @@ namespace ChoppedEVA.Settings
         public override bool Enabled(MemberInfo member, GameParameters parameters)
         {
             return member.Name == nameof(EnableChopping) || EnableChopping;
-        }
-
-        public static void ApplySettings(ChoppedEvaModule evaModule)
-        {
-            var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
-            if (properties.EnableChopping)
-            {
-                evaModule.EnableChopping = properties.EnableChopping;
-                evaModule.ReportMissing = properties.ReportMissing;
-
-                // Add resource
-                var node = new ConfigNode("RESOURCE");
-                node.AddValue("name", ResourceName);
-                node.AddValue("amount", properties.MaxEvaTime);
-                node.AddValue("maxAmount", properties.MaxEvaTime);
-
-                evaModule.part.AddResource(node);
-            }
-            else
-            {
-                evaModule.part.RemoveResource(ResourceName);
-            }
         }
     }
 }

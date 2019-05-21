@@ -14,7 +14,7 @@ namespace ChoppedEVA.LifeSupport
             try
             {
                 if (!vessel.loaded || vessel.vesselType != VesselType.EVA) return;
-                ChoppedEvaSettings.ApplySettings(this);
+                SettingsUtils.ApplySettings(this);
                 Log($"{vessel.name} is on EVA");
                 UpdateResourceAmount();
             }
@@ -55,13 +55,13 @@ namespace ChoppedEVA.LifeSupport
             {
                 if (vessel == null || !vessel.loaded) return;
 
-                var minutes = TimeSpan.FromSeconds(vessel.missionTime).Minutes;
-                if (minutes == 0) return;
+                var seconds = (int)TimeSpan.FromSeconds(vessel.missionTime).TotalSeconds;
+                if (seconds == 0) return;
 
                 var resource = part.Resources[ChoppedEvaSettings.ResourceName];
-                if (!resource.amount.Equals(resource.maxAmount - minutes))
+                if (!resource.amount.Equals(resource.maxAmount - seconds))
                 {
-                    resource.amount = resource.maxAmount - minutes;
+                    resource.amount = resource.maxAmount - seconds;
                 }
 
                 if (!resource.amount.Equals(0)) return;
