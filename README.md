@@ -7,9 +7,9 @@ A lightweight EVA Life Support mod for Kerbal Space Program.
 Current features
 ----------------------------
 * Life Support resource used on EVA
-* Kerbals consume 1 Life Support unit per minute while on EVA (ground & orbit)
+* Kerbals consume 1 Life Support unit per second while on EVA (ground & orbit)
 * Kill/report kerbal as missing when Life Support has run out
-* Activate EVA chopping/amount of Life Support (minutes) can be specified in settings
+* Activate EVA chopping/amount of Life Support (in minutes) can be specified in settings
 
 Installation
 ----------------------------
