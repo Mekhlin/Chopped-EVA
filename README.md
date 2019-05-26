@@ -13,7 +13,10 @@ Current features
 
 Installation
 ----------------------------
-Copy the contents of GameData into the GameData folder in your KSP installation directory.
+* Copy the contents of GameData into the GameData folder in your KSP installation directory
+* Start a game.
+* Open the in-game settings and select Chopped EVA.
+* Enable EVA chopping.
 
 Requires
 ----------------------------
