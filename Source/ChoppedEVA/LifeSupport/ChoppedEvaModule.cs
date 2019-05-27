@@ -14,7 +14,7 @@ namespace ChoppedEVA.LifeSupport
             try
             {
                 if (!vessel.loaded || vessel.vesselType != VesselType.EVA) return;
-                SettingsUtils.ApplySettings(this);
+                SettingsHandler.ApplySettings(this);
                 Log($"{vessel.name} is on EVA");
                 UpdateResourceAmount();
             }
