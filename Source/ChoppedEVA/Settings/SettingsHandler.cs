@@ -1,4 +1,5 @@
-﻿using ChoppedEVA.LifeSupport;
+﻿using System;
+using ChoppedEVA.LifeSupport;
 
 namespace ChoppedEVA.Settings
 {
@@ -8,15 +9,23 @@ namespace ChoppedEVA.Settings
 
         public static void ApplySettings(ChoppedEvaModule evaModule)
         {
-            if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
-            var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
-            if (!properties.EnableChopping) return;
-            evaModule.EnableChopping = properties.EnableChopping;
-            evaModule.ReportMissing = properties.ReportMissing;
+            try
+            {
+                if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
+                var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
+                if (!properties.EnableChopping) return;
+                evaModule.EnableChopping = properties.EnableChopping;
+                evaModule.ReportMissing = properties.ReportMissing;
 
-            // Add resource
-            var amount = properties.MaxEvaTime * 60;
-            AddResource(evaModule, amount);
+                // Add resource
+                var amount = properties.MaxEvaTime * 60;
+                AddResource(evaModule, amount);
+
+            }
+            catch (Exception ex)
+            {
+                Logging.Error("Failed to apply settings to ChoppedEvaModule", ex);
+            }
         }
 
         private static void AddResource(ChoppedEvaModule evaModule, int amount)

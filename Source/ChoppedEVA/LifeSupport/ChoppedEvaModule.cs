@@ -1,6 +1,5 @@
 ﻿using System;
 using ChoppedEVA.Settings;
-using UnityEngine;
 
 namespace ChoppedEVA.LifeSupport
 {
@@ -15,12 +14,12 @@ namespace ChoppedEVA.LifeSupport
             {
                 if (!vessel.loaded || vessel.vesselType != VesselType.EVA) return;
                 SettingsHandler.ApplySettings(this);
-                Log($"{vessel.name} is on EVA");
+                Logging.Log($"{vessel.name} is on EVA");
                 UpdateResourceAmount();
             }
             catch (Exception ex)
             {
-                Log("Failed to start module. Exception = " + ex.Message);
+                Logging.Error("Failed to start module", ex);
             }
         }
 
@@ -45,7 +44,7 @@ namespace ChoppedEVA.LifeSupport
             }
             catch (Exception ex)
             {
-                Log("Failed to update module. Exception = " + ex.Message);
+                Logging.Error("Failed to update module", ex);
             }
         }
 
@@ -69,7 +68,7 @@ namespace ChoppedEVA.LifeSupport
             }
             catch (Exception ex)
             {
-                Log("Failed to update resource amount - " + ex.Message);
+                Logging.Error("Failed to update resource amount", ex);
             }
         }
 
@@ -86,16 +85,12 @@ namespace ChoppedEVA.LifeSupport
                 ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                 doomed.rosterStatus = ReportMissing ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
                 part?.Die();
+                Logging.Log($"{vessel.name} has run out of Life Support");
             }
             catch (Exception ex)
             {
-                Log("Failed to kill crew member - " + ex.Message);
+                Logging.Error("Failed to kill crew member", ex);
             }
-        }
-
-        private static void Log(string message)
-        {
-            Debug.Log($"[{nameof(ChoppedEVA)}] {nameof(ChoppedEvaModule)} - {message}");
         }
     }
 }
