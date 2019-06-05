@@ -55,10 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LifeSupport\ChoppedEvaModule.cs" />
+    <Compile Include="Handlers\ResourceHandler.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ChoppedEvaSettings.cs" />
-    <Compile Include="Settings\SettingsHandler.cs" />
+    <Compile Include="Handlers\SettingsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

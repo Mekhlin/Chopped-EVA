@@ -1,7 +1,8 @@
 ﻿using System;
 using ChoppedEVA.LifeSupport;
+using ChoppedEVA.Settings;
 
-namespace ChoppedEVA.Settings
+namespace ChoppedEVA.Handlers
 {
     public static class SettingsHandler
     {
@@ -19,7 +20,7 @@ namespace ChoppedEVA.Settings
 
                 // Add resource
                 var amount = properties.MaxEvaTime * 60;
-                AddResource(evaModule, amount);
+                ResourceHandler.Add(evaModule, ResourceName, amount);
 
             }
             catch (Exception ex)
@@ -28,15 +29,25 @@ namespace ChoppedEVA.Settings
             }
         }
 
-        private static void AddResource(ChoppedEvaModule evaModule, int amount)
+        public static Kerbal GetKerbal(KerbalEVA kerbalEva)
         {
-            if (!evaModule.vessel.loaded) return;
-            var node = new ConfigNode("RESOURCE");
-            node.AddValue("name", ResourceName);
-            node.AddValue("amount", amount);
-            node.AddValue("maxAmount", amount);
-
-            evaModule.part.AddResource(node);
+            try
+            {
+                var crewMembers = kerbalEva.vessel.GetVesselCrew().ToArray();
+                if (crewMembers.Length != 1) return null;
+                var crewMember = crewMembers[0];
+                var kerbal = new Kerbal
+                {
+                    name = kerbalEva.vessel.name,
+                    veteran = crewMember.veteran
+                };
+                return kerbal;
+            }
+            catch (Exception ex)
+            {
+                Logging.Error("Failed to get Kerbal info", ex);
+                return null;
+            }
         }
     }
 }

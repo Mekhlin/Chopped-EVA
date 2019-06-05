@@ -1,9 +1,10 @@
 ﻿using System;
+using ChoppedEVA.Handlers;
 using ChoppedEVA.Settings;
 
 namespace ChoppedEVA.LifeSupport
 {
-    public class ChoppedEvaModule : PartModule
+    public class ChoppedEvaModule : KerbalEVA
     {
         public bool EnableChopping { get; set; }
         public bool ReportMissing { get; set; }
