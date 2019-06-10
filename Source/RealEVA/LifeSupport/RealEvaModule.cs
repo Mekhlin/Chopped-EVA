@@ -1,12 +1,12 @@
 ﻿using System;
-using ChoppedEVA.Handlers;
-using ChoppedEVA.Settings;
+using RealEVA.Handlers;
+using RealEVA.Settings;
 
-namespace ChoppedEVA.LifeSupport
+namespace RealEVA.LifeSupport
 {
-    public class ChoppedEvaModule : KerbalEVA
+    public class RealEvaModule : KerbalEVA
     {
-        public bool EnableChopping { get; set; }
+        public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }
 
         public override void OnStart(StartState state)
@@ -40,7 +40,7 @@ namespace ChoppedEVA.LifeSupport
         {
             try
             {
-                if (EnableChopping == false) return;
+                if (EnableLifeSupport == false) return;
                 UpdateResourceAmount();
             }
             catch (Exception ex)
@@ -58,14 +58,14 @@ namespace ChoppedEVA.LifeSupport
                 var seconds = (int)TimeSpan.FromSeconds(vessel.missionTime).TotalSeconds;
                 if (seconds == 0) return;
 
-                var resource = part.Resources[ChoppedEvaSettings.ResourceName];
+                var resource = part.Resources[RealEvaSettings.ResourceName];
                 if (!resource.amount.Equals(resource.maxAmount - seconds))
                 {
                     resource.amount = resource.maxAmount - seconds;
                 }
 
                 if (!resource.amount.Equals(0)) return;
-                Chop();
+                Kill();
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace ChoppedEVA.LifeSupport
             }
         }
 
-        private void Chop()
+        private void Kill()
         {
             try
             {

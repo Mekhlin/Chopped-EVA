@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ChoppedEVA
+namespace RealEVA
 {
     public static class Logging
     {
-        private static readonly string Prefix = $"[{nameof(ChoppedEVA)}] ";
+        private static readonly string Prefix = $"[{nameof(RealEVA)}] ";
 
         public static void Log(object message)
         {

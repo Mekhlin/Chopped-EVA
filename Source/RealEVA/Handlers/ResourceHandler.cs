@@ -1,4 +1,4 @@
-﻿namespace ChoppedEVA.Handlers
+﻿namespace RealEVA.Handlers
 {
     public class ResourceHandler
     {

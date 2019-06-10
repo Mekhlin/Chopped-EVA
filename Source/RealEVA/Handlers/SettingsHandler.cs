@@ -1,21 +1,21 @@
 ﻿using System;
-using ChoppedEVA.LifeSupport;
-using ChoppedEVA.Settings;
+using RealEVA.LifeSupport;
+using RealEVA.Settings;
 
-namespace ChoppedEVA.Handlers
+namespace RealEVA.Handlers
 {
     public static class SettingsHandler
     {
         public const string ResourceName = "EvaLS";
 
-        public static void ApplySettings(ChoppedEvaModule evaModule)
+        public static void ApplySettings(RealEvaModule evaModule)
         {
             try
             {
                 if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
-                var properties = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
-                if (!properties.EnableChopping) return;
-                evaModule.EnableChopping = properties.EnableChopping;
+                var properties = HighLogic.CurrentGame.Parameters.CustomParams<RealEvaSettings>();
+                if (!properties.EnableLifeSupport) return;
+                evaModule.EnableLifeSupport = properties.EnableLifeSupport;
                 evaModule.ReportMissing = properties.ReportMissing;
 
                 // Add resource
@@ -25,7 +25,7 @@ namespace ChoppedEVA.Handlers
             }
             catch (Exception ex)
             {
-                Logging.Error("Failed to apply settings to ChoppedEvaModule", ex);
+                Logging.Error("Failed to apply settings", ex);
             }
         }
 
