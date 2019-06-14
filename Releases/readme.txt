@@ -1,10 +1,6 @@
 # Real EVA
-[![License](https://img.shields.io/github/license/Mekhlin/RealEVA.svg)](https://raw.githubusercontent.com/Mekhlin/RealEVA/master/LICENSE)
-![AppVeyor](https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor&logoColor=lightgrey)
-![GitHub release](https://img.shields.io/github/release/Mekhlin/RealEVA.svg?logo=github)
-![KSP version](https://img.shields.io/badge/KSP-1.7.x-blue.svg)
 
-A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
+A lightweight EVA Life Support mod for Kerbal Space Program.
 
 Current features
 ----------------------------
