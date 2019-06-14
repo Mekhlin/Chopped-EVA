@@ -4,7 +4,7 @@ using RealEVA.Settings;
 
 namespace RealEVA.LifeSupport
 {
-    public class RealEvaModule : KerbalEVA
+    public class RealEvaModule : PartModule
     {
         public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }
