@@ -67,6 +67,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetDir)$(TargetName).pdb" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"
-xcopy /Y "$(TargetDir)$(TargetName).dll" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"</PostBuildEvent>
+xcopy /Y "$(TargetDir)$(TargetName).dll" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"
+
+xcopy /Y "$(TargetDir)$(TargetName).pdb" "..\..\..\..\GameData\Mekhlin\RealEVA\Plugins\"
+xcopy /Y "$(TargetDir)$(TargetName).dll" "..\..\..\..\GameData\Mekhlin\RealEVA\Plugins\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

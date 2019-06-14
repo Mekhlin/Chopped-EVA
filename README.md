@@ -1,6 +1,6 @@
 # Real EVA
 [![License](https://img.shields.io/github/license/Mekhlin/RealEVA.svg)](https://raw.githubusercontent.com/Mekhlin/RealEVA/master/LICENSE)
-![AppVeyor](https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor)
+![AppVeyor](https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor&logoColor=lightgrey)
 ![KSP version](https://img.shields.io/badge/KSP-1.7.x-blue.svg)
 ![KSP version](https://img.shields.io/badge/DLC-all-blue.svg)
 
