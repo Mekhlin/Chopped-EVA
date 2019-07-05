@@ -6,48 +6,44 @@ namespace RealEVA.Handlers
 {
     public static class SettingsHandler
     {
-        public const string ResourceName = "EvaLS";
-
         public static void ApplySettings(RealEvaModule evaModule)
         {
             try
             {
                 if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
-                var properties = HighLogic.CurrentGame.Parameters.CustomParams<RealEvaSettings>();
-                if (!properties.EnableLifeSupport) return;
-                evaModule.EnableLifeSupport = properties.EnableLifeSupport;
-                evaModule.ReportMissing = properties.ReportMissing;
+                var settings = HighLogic.CurrentGame.Parameters.CustomParams<RealEvaSettings>();
+                if (!settings.EnableLifeSupport) return;
+                evaModule.EnableLifeSupport = settings.EnableLifeSupport;
+                evaModule.ReportMissing = settings.ReportMissing;
 
-                // Add resource
-                var amount = properties.MaxEvaTime * 60;
-                ResourceHandler.Add(evaModule, ResourceName, amount);
-
+                // Add resources
+                if (settings.RealResources == false)
+                {
+                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.EvaLs, 1.0);
+                    var amount = settings.MaxEvaTime * 60;
+                    ResourceHandler.Add(evaModule, ResourceNames.EvaLs, amount);
+                }
+                else
+                {
+                    var oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
+                    var carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
+                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.Oxygen, oxygenPerSec);
+                    ResourceHandler.Add(evaModule, ResourceNames.Oxygen, settings.OxygenAmount);
+                    evaModule.OutputResourceInfo = new ResourceDef(ResourceNames.CarbonDioxide, carbonDioxidePerSec);
+                    ResourceHandler.Add(evaModule, ResourceNames.CarbonDioxide, 0, settings.OxygenAmount * carbonDioxidePerSec);
+                }
             }
             catch (Exception ex)
             {
                 Logging.Error("Failed to apply settings", ex);
             }
         }
+    }
 
-        public static Kerbal GetKerbal(KerbalEVA kerbalEva)
-        {
-            try
-            {
-                var crewMembers = kerbalEva.vessel.GetVesselCrew().ToArray();
-                if (crewMembers.Length != 1) return null;
-                var crewMember = crewMembers[0];
-                var kerbal = new Kerbal
-                {
-                    name = kerbalEva.vessel.name,
-                    veteran = crewMember.veteran
-                };
-                return kerbal;
-            }
-            catch (Exception ex)
-            {
-                Logging.Error("Failed to get Kerbal info", ex);
-                return null;
-            }
-        }
+    public static class ResourceNames
+    {
+        public const string EvaLs = "EvaLS"; // EVA LS
+        public const string Oxygen = "EvaOxygen"; // Oxygen
+        public const string CarbonDioxide = "EvaCO2"; // Carbon dioxide
     }
 }

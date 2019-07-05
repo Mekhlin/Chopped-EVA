@@ -1,8 +1,7 @@
 # Real EVA
-[![License](https://img.shields.io/github/license/Mekhlin/RealEVA.svg)](https://raw.githubusercontent.com/Mekhlin/RealEVA/master/LICENSE)
-![AppVeyor](https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor&logoColor=lightgrey)
-![GitHub release](https://img.shields.io/github/release/Mekhlin/RealEVA.svg?logo=github)
-![KSP version](https://img.shields.io/badge/KSP-1.7.x-blue.svg)
+[![License][license_badge]](https://raw.githubusercontent.com/Mekhlin/RealEVA/master/LICENSE)
+![AppVeyor][appveyor_badge]
+[![Release][release_badge]](https://github.com/Mekhlin/RealEVA/releases)
 
 A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
 
@@ -13,14 +12,19 @@ Current features
 * Kill/report kerbal as missing when Life Support has run out
 * Enable EVA Life Support and amount of life support (in minutes) can be specified in settings
 
-Installation
-----------------------------
-* Copy the contents of GameData into the GameData folder in your KSP installation directory
-* Start a game.
-* Open the in-game settings and select Real EVA.
-* Enable EVA life support.
-
 Requires
 ----------------------------
 * KSP version 1.4.5 or later
-* Module Manager (included in release package)
+* [Module Manager](https://github.com/sarbian/ModuleManager/releases) (included in release package)
+
+Installation
+----------------------------
+* Copy the contents of GameData into the GameData folder in your KSP installation directory
+* Start a game
+* Open the in-game settings and select Real EVA
+* Enable EVA life support
+
+
+[license_badge]: https://img.shields.io/github/license/Mekhlin/RealEVA.svg
+[appveyor_badge]: https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor&logoColor=white
+[release_badge]: https://img.shields.io/github/release/Mekhlin/RealEVA.svg?logo=github

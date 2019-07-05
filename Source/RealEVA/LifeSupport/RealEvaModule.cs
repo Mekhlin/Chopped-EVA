@@ -1,6 +1,5 @@
 ﻿using System;
 using RealEVA.Handlers;
-using RealEVA.Settings;
 
 namespace RealEVA.LifeSupport
 {
@@ -8,12 +7,14 @@ namespace RealEVA.LifeSupport
     {
         public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }
+        public ResourceDef ResourceInfo { get; set; }
+        public ResourceDef OutputResourceInfo { get; set; }
 
         public override void OnStart(StartState state)
         {
             try
             {
-                if (!vessel.loaded || vessel.vesselType != VesselType.EVA) return;
+                if (!vessel.loaded || vessel.isEVA == false) return;
                 SettingsHandler.ApplySettings(this);
                 Logging.Log($"{vessel.name} is on EVA");
                 UpdateResourceAmount();
@@ -58,14 +59,21 @@ namespace RealEVA.LifeSupport
                 var seconds = (int)TimeSpan.FromSeconds(vessel.missionTime).TotalSeconds;
                 if (seconds == 0) return;
 
-                var resource = part.Resources[RealEvaSettings.ResourceName];
-                if (!resource.amount.Equals(resource.maxAmount - seconds))
+                var resource = part.Resources[ResourceInfo.Name];
+                if (resource.amount.Equals(resource.maxAmount - seconds * ResourceInfo.Multiplier)) return;
+                if (resource.maxAmount - seconds * ResourceInfo.Multiplier <= 0)
                 {
-                    resource.amount = resource.maxAmount - seconds;
+                    Kill();
                 }
-
-                if (!resource.amount.Equals(0)) return;
-                Kill();
+                else
+                {
+                    resource.amount = resource.maxAmount - ResourceInfo.Multiplier * seconds;
+                    if (OutputResourceInfo is object)
+                    {
+                        var output = part.Resources[OutputResourceInfo.Name];
+                        output.amount = OutputResourceInfo.Multiplier * seconds;
+                    }
+                }
             }
             catch (Exception ex)
             {
