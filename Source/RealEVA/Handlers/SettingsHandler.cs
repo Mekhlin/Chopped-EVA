@@ -35,14 +35,14 @@ namespace RealEVA.Handlers
             }
             catch (Exception ex)
             {
-                Logging.Error("Failed to apply settings", ex);
+                Logging.Error("Failed to apply settings to module", ex);
             }
         }
     }
 
     public static class ResourceNames
     {
-        public const string EvaLs = "EvaLS"; // EVA LS
+        public const string EvaLs = "EvaLS"; // EVA LS (simple life support)
         public const string Oxygen = "EvaOxygen"; // Oxygen
         public const string CarbonDioxide = "EvaCO2"; // Carbon dioxide
     }

@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\build\GameData\Mekhlin\RealEVA\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\build\GameData\Mekhlin\RealEVA\Plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -68,9 +68,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetDir)$(TargetName).pdb" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"
-xcopy /Y "$(TargetDir)$(TargetName).dll" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"
-
-xcopy /Y "$(TargetDir)$(TargetName).pdb" "..\..\..\..\GameData\Mekhlin\RealEVA\Plugins\"
-xcopy /Y "$(TargetDir)$(TargetName).dll" "..\..\..\..\GameData\Mekhlin\RealEVA\Plugins\"</PostBuildEvent>
+xcopy /Y "$(TargetDir)$(TargetName).dll" "C:\KSPDev\GameData\Mekhlin\RealEVA\Plugins\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

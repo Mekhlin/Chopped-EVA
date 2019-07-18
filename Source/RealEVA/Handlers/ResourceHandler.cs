@@ -1,16 +1,25 @@
-﻿namespace RealEVA.Handlers
+﻿using System;
+
+namespace RealEVA.Handlers
 {
     public class ResourceHandler
     {
         public static void Add(PartModule module, string name, double amount, double? maxAmount = null)
         {
-            if (!module.vessel.loaded) return;
-            var node = new ConfigNode("RESOURCE");
-            node.AddValue("name", name);
-            node.AddValue("amount", amount);
-            node.AddValue("maxAmount", maxAmount ?? amount);
+            try
+            {
+                if (!module.vessel.loaded) return;
+                var node = new ConfigNode("RESOURCE");
+                node.AddValue("name", name);
+                node.AddValue("amount", amount);
+                node.AddValue("maxAmount", maxAmount ?? amount);
 
-            module.part.AddResource(node);
+                module.part.AddResource(node);
+            }
+            catch (Exception ex)
+            {
+                Logging.Error($"Failed to add resource to module - Resource:{0}", ex);
+            }
         }
     }
 }

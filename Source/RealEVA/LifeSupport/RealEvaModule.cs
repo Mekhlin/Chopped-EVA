@@ -63,7 +63,7 @@ namespace RealEVA.LifeSupport
                 if (resource.amount.Equals(resource.maxAmount - seconds * ResourceInfo.Multiplier)) return;
                 if (resource.maxAmount - seconds * ResourceInfo.Multiplier <= 0)
                 {
-                    Kill();
+                    Chop();
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace RealEVA.LifeSupport
             }
         }
 
-        private void Kill()
+        private void Chop()
         {
             try
             {
@@ -98,7 +98,7 @@ namespace RealEVA.LifeSupport
             }
             catch (Exception ex)
             {
-                Logging.Error("Failed to kill crew member", ex);
+                Logging.Error("Failed to chop kerbal", ex);
             }
         }
     }
