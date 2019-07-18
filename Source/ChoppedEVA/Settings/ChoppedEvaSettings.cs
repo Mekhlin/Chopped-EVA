@@ -33,7 +33,7 @@ namespace ChoppedEVA.Settings
         public float OxygenPerSec = 0.8f;
 
         [GameParameters.CustomFloatParameterUI("Carbon dioxide per second", toolTip = "Amount of carbon dioxide produced per second", minValue = 0.7f, maxValue = 0.9f, asPercentage = false, displayFormat = "0.0")]
-        public float CarbonDioxidePerSec = 07f;
+        public float CarbonDioxidePerSec = 0.7f;
 
         [GameParameters.CustomIntParameterUI("Max EVA time (minutes)", maxValue = 15, minValue = 1, stepSize = 1, toolTip = "How many minutes can a kerbal be on EVA, before being killed", autoPersistance = true)]
         public int MaxEvaTime = 10;
