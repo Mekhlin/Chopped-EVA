@@ -1,17 +1,17 @@
 ﻿using System;
-using RealEVA.LifeSupport;
-using RealEVA.Settings;
+using ChoppedEVA.LifeSupport;
+using ChoppedEVA.Settings;
 
-namespace RealEVA.Handlers
+namespace ChoppedEVA.Handlers
 {
     public static class SettingsHandler
     {
-        public static void ApplySettings(RealEvaModule evaModule)
+        public static void ApplySettings(ChoppedEvaModule evaModule)
         {
             try
             {
                 if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
-                var settings = HighLogic.CurrentGame.Parameters.CustomParams<RealEvaSettings>();
+                var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
                 if (!settings.EnableLifeSupport) return;
                 evaModule.EnableLifeSupport = settings.EnableLifeSupport;
                 evaModule.ReportMissing = settings.ReportMissing;

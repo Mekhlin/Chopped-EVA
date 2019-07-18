@@ -1,7 +1,7 @@
-# Real EVA
-[![License][license_badge]](https://raw.githubusercontent.com/Mekhlin/RealEVA/master/LICENSE)
+# Chopped EVA
+[![License][license_badge]](https://raw.githubusercontent.com/Mekhlin/ChoppedEVA/master/LICENSE)
 ![AppVeyor][appveyor_badge]
-[![Release][release_badge]](https://github.com/Mekhlin/RealEVA/releases)
+[![Release][release_badge]](https://github.com/Mekhlin/ChoppedEVA/releases)
 
 A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
 
@@ -21,10 +21,10 @@ Installation
 ----------------------------
 * Copy the contents of GameData into the GameData folder in your KSP installation directory
 * Start a game
-* Open the in-game settings and select Real EVA
+* Open the in-game settings and select Chopped EVA
 * Enable EVA life support
 
 
-[license_badge]: https://img.shields.io/github/license/Mekhlin/RealEVA.svg
-[appveyor_badge]: https://img.shields.io/appveyor/ci/TangChr/realeva.svg?logo=appveyor&logoColor=white
-[release_badge]: https://img.shields.io/github/release/Mekhlin/RealEVA.svg?logo=github
+[license_badge]: https://img.shields.io/github/license/Mekhlin/ChoppedEVA.svg
+[appveyor_badge]: https://img.shields.io/appveyor/ci/TangChr/choppedeva.svg?logo=appveyor&logoColor=white
+[release_badge]: https://img.shields.io/github/release/Mekhlin/ChoppedEVA.svg?logo=github

@@ -1,9 +1,9 @@
 ﻿using System;
-using RealEVA.Handlers;
+using ChoppedEVA.Handlers;
 
-namespace RealEVA.LifeSupport
+namespace ChoppedEVA.LifeSupport
 {
-    public class RealEvaModule : PartModule
+    public class ChoppedEvaModule : PartModule
     {
         public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }

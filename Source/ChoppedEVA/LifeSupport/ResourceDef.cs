@@ -1,4 +1,4 @@
-﻿namespace RealEVA.LifeSupport
+﻿namespace ChoppedEVA.LifeSupport
 {
     public class ResourceDef
     {

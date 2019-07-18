@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
 
-namespace RealEVA.Settings
+namespace ChoppedEVA.Settings
 {
-    public class RealEvaSettings : GameParameters.CustomParameterNode
+    public class ChoppedEvaSettings : GameParameters.CustomParameterNode
     {
         #region Housekeeping
 
-        public override string Title { get; } = "Real EVA settings";
-        public override string Section { get; } = "Real EVA";
-        public override string DisplaySection { get; } = "Real EVA";
+        public override string Title { get; } = "Chopped EVA settings";
+        public override string Section { get; } = "Chopped EVA";
+        public override string DisplaySection { get; } = "Chopped EVA";
         public override int SectionOrder { get; } = 3;
         public override GameParameters.GameMode GameMode { get; } = GameParameters.GameMode.ANY;
         public override bool HasPresets { get; } = false;

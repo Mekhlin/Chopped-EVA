@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RealEVA.Handlers
+namespace ChoppedEVA.Handlers
 {
     public class ResourceHandler
     {
