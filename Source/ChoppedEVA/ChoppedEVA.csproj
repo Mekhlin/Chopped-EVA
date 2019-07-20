@@ -50,7 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LifeSupport\ChoppedEvaModule.cs" />
+    <Compile Include="LifeSupport\CrewChopper.cs" />
+    <Compile Include="Modules\ChoppedEvaModule.cs" />
     <Compile Include="Handlers\ResourceHandler.cs" />
     <Compile Include="LifeSupport\ResourceDef.cs" />
     <Compile Include="Logging.cs" />

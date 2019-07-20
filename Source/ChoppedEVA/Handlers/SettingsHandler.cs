@@ -1,5 +1,6 @@
 ﻿using System;
 using ChoppedEVA.LifeSupport;
+using ChoppedEVA.Modules;
 using ChoppedEVA.Settings;
 
 namespace ChoppedEVA.Handlers
@@ -19,12 +20,13 @@ namespace ChoppedEVA.Handlers
                 // Add resources
                 if (settings.RealResources == false)
                 {
-                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.EvaLs, 1.0);
+                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.EvaLs, 1);
                     var amount = settings.MaxEvaTime * 60;
                     ResourceHandler.Add(evaModule, ResourceNames.EvaLs, amount);
                 }
                 else
                 {
+                    evaModule.EnableOutputResource = true;
                     var oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
                     var carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
                     evaModule.ResourceInfo = new ResourceDef(ResourceNames.Oxygen, oxygenPerSec);

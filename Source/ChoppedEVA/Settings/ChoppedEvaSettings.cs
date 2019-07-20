@@ -26,7 +26,7 @@ namespace ChoppedEVA.Settings
         [GameParameters.CustomParameterUI("Real resources", toolTip = "Use real resources such as oxygen and carbon dioxide", autoPersistance = true, gameMode = GameParameters.GameMode.ANY)]
         public bool RealResources = false;
 
-        [GameParameters.CustomIntParameterUI("Oxygen", maxValue = 1000, minValue = 500, stepSize = 10, toolTip = "Amount of oxygen", autoPersistance = true)]
+        [GameParameters.CustomIntParameterUI("Oxygen", maxValue = 1000, minValue = 200, stepSize = 10, toolTip = "Amount of oxygen", autoPersistance = true)]
         public int OxygenAmount = 700;
 
         [GameParameters.CustomFloatParameterUI("Oxygen per second", toolTip = "Amount of oxygen consumed per second", minValue = 0.8f, maxValue = 1.2f, asPercentage = false, displayFormat = "0.0")]

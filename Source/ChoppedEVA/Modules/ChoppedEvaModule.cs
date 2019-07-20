@@ -1,14 +1,20 @@
 ﻿using System;
 using ChoppedEVA.Handlers;
+using ChoppedEVA.LifeSupport;
 
-namespace ChoppedEVA.LifeSupport
+namespace ChoppedEVA.Modules
 {
     public class ChoppedEvaModule : PartModule
     {
+        #region Properties
+
         public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }
+        public bool EnableOutputResource { get; set; }
         public ResourceDef ResourceInfo { get; set; }
         public ResourceDef OutputResourceInfo { get; set; }
+
+        #endregion
 
         public override void OnStart(StartState state)
         {
@@ -24,6 +30,8 @@ namespace ChoppedEVA.LifeSupport
                 Logging.Error("Failed to start module", ex);
             }
         }
+
+        #region Overrides
 
         public override void OnLoad(ConfigNode node)
         {
@@ -50,7 +58,11 @@ namespace ChoppedEVA.LifeSupport
             }
         }
 
-        public void UpdateResourceAmount()
+        #endregion
+
+        private int _prevSeconds;
+
+        private void UpdateResourceAmount()
         {
             try
             {
@@ -60,19 +72,26 @@ namespace ChoppedEVA.LifeSupport
                 if (seconds == 0) return;
 
                 var resource = part.Resources[ResourceInfo.Name];
-                if (resource.amount.Equals(resource.maxAmount - seconds * ResourceInfo.Multiplier)) return;
-                if (resource.maxAmount - seconds * ResourceInfo.Multiplier <= 0)
+                if (_prevSeconds == seconds - 1)
                 {
-                    Chop();
-                }
-                else
-                {
-                    resource.amount = resource.maxAmount - ResourceInfo.Multiplier * seconds;
-                    if (OutputResourceInfo is object)
+                    if (HasHelmetOn())
                     {
-                        var output = part.Resources[OutputResourceInfo.Name];
-                        output.amount = OutputResourceInfo.Multiplier * seconds;
+                        if (resource is object)
+                            resource.amount -= ResourceInfo.Multiplier;
+
+                        if (EnableOutputResource && OutputResourceInfo is object)
+                        {
+                            var outputRes = part.Resources[OutputResourceInfo.Name];
+                            if (outputRes is object)
+                                outputRes.amount += OutputResourceInfo.Multiplier;
+                        }
                     }
+                    _prevSeconds = seconds;
+                }
+
+                if (resource is object && resource.amount <= 0)
+                {
+                    CrewChopper.Chop(this);
                 }
             }
             catch (Exception ex)
@@ -81,25 +100,15 @@ namespace ChoppedEVA.LifeSupport
             }
         }
 
-        private void Chop()
+        private bool HasHelmetOn()
         {
-            try
-            {
-                if (part == null || vessel == null || !vessel.loaded) return;
+            if (vessel == null || !vessel.loaded) return true;
 
-                var crewMembers = vessel.GetVesselCrew().ToArray();
-                if (crewMembers.Length != 1) return;
+            var crewMembers = vessel.GetVesselCrew().ToArray();
+            if (crewMembers.Length != 1) return true;
 
-                var doomed = crewMembers[0];
-                ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
-                doomed.rosterStatus = ReportMissing ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
-                part?.Die();
-                Logging.Log($"{vessel.name} has run out of Life Support");
-            }
-            catch (Exception ex)
-            {
-                Logging.Error("Failed to chop kerbal", ex);
-            }
+            var crewMember = crewMembers[0];
+            return crewMember.hasHelmetOn;
         }
     }
 }

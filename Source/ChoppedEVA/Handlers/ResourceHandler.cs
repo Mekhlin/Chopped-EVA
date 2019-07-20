@@ -18,7 +18,7 @@ namespace ChoppedEVA.Handlers
             }
             catch (Exception ex)
             {
-                Logging.Error($"Failed to add resource to module - Resource:{0}", ex);
+                Logging.Error($"Failed to add resource to module - Resource:{name ?? string.Empty}", ex);
             }
         }
     }
