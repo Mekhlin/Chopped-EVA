@@ -2,12 +2,12 @@
 
 A lightweight EVA Life Support mod for Kerbal Space Program.
 
-Current features
+Features
 ----------------------------
-* Life Support resource used on EVA
-* Kerbals consume 1 Life Support unit per second while on EVA (ground & orbit)
-* Kill/report kerbal as missing when Life Support has run out
-* Enable EVA Life Support and amount of life support (in minutes) can be specified in settings
+* Adds resources to kerbals on EVA.
+* Switch between "simple" life support based on minutes and life support based on oxygen/carbon dioxide.
+* Option to mark kerbals as missing instead of killed.
+* Kerbals will not use life support if helmet is off.
 
 Installation
 ----------------------------
