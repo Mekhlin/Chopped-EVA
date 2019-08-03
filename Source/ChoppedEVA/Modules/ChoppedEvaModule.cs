@@ -10,7 +10,6 @@ namespace ChoppedEVA.Modules
 
         public bool EnableLifeSupport { get; set; }
         public bool ReportMissing { get; set; }
-        public bool EnableOutputResource { get; set; }
         public ResourceDef ResourceInfo { get; set; }
         public ResourceDef OutputResourceInfo { get; set; }
 
@@ -79,7 +78,7 @@ namespace ChoppedEVA.Modules
                         if (resource is object)
                             resource.amount -= ResourceInfo.Multiplier;
 
-                        if (EnableOutputResource && OutputResourceInfo is object)
+                        if (OutputResourceInfo is object)
                         {
                             var outputRes = part.Resources[OutputResourceInfo.Name];
                             if (outputRes is object)

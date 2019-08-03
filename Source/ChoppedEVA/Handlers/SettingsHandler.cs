@@ -18,22 +18,12 @@ namespace ChoppedEVA.Handlers
                 evaModule.ReportMissing = settings.ReportMissing;
 
                 // Add resources
-                if (settings.RealResources == false)
-                {
-                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.EvaLs, 1);
-                    var amount = settings.MaxEvaTime * 60;
-                    ResourceHandler.Add(evaModule, ResourceNames.EvaLs, amount);
-                }
-                else
-                {
-                    evaModule.EnableOutputResource = true;
-                    var oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
-                    var carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
-                    evaModule.ResourceInfo = new ResourceDef(ResourceNames.Oxygen, oxygenPerSec);
-                    ResourceHandler.Add(evaModule, ResourceNames.Oxygen, settings.OxygenAmount);
-                    evaModule.OutputResourceInfo = new ResourceDef(ResourceNames.CarbonDioxide, carbonDioxidePerSec);
-                    ResourceHandler.Add(evaModule, ResourceNames.CarbonDioxide, 0, settings.OxygenAmount * carbonDioxidePerSec);
-                }
+                var oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
+                var carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
+                evaModule.ResourceInfo = new ResourceDef(ResourceNames.Oxygen, oxygenPerSec);
+                ResourceHandler.Add(evaModule, ResourceNames.Oxygen, settings.OxygenAmount);
+                evaModule.OutputResourceInfo = new ResourceDef(ResourceNames.CarbonDioxide, carbonDioxidePerSec);
+                ResourceHandler.Add(evaModule, ResourceNames.CarbonDioxide, 0, settings.OxygenAmount * carbonDioxidePerSec);
             }
             catch (Exception ex)
             {
@@ -44,8 +34,7 @@ namespace ChoppedEVA.Handlers
 
     public static class ResourceNames
     {
-        public const string EvaLs = "EvaLS"; // EVA LS (simple life support)
-        public const string Oxygen = "EvaOxygen"; // Oxygen
-        public const string CarbonDioxide = "EvaCO2"; // Carbon dioxide
+        public const string Oxygen = "Oxygen"; // Oxygen
+        public const string CarbonDioxide = "CarbonDioxide"; // Carbon dioxide
     }
 }

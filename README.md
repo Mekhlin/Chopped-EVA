@@ -7,10 +7,9 @@ A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbal
 
 Features
 ----------------------------
-* Adds resources to kerbals on EVA.
-* Switch between "simple" life support based on minutes and life support based on oxygen/carbon dioxide.
-* Option to mark kerbals as missing instead of killed.
-* Kerbals will not use life support if helmet is off.
+* EVA life support based on oxygen and carbon dioxide
+* Option to mark kerbals as missing instead of killed (when life support has run out).
+* Kerbals will not use oxygen if helmet is off.
 
 Installation
 ----------------------------
@@ -22,4 +21,5 @@ Installation
 Requires
 ----------------------------
 * KSP version 1.4.5 or later
-* [Module Manager](https://github.com/sarbian/ModuleManager/releases) (included in release package)
+* [Module Manager](https://github.com/sarbian/ModuleManager/releases)
+* [Community Resource Pack](https://github.com/BobPalmer/CommunityResourcePack/releases)
