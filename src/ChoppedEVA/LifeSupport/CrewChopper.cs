@@ -5,7 +5,7 @@ namespace ChoppedEVA.LifeSupport
 {
     public static class CrewChopper
     {
-        public static void Chop(ChoppedEvaModule evaModule)
+        public static void Chop(ModuleChoppedEVA evaModule)
         {
             try
             {

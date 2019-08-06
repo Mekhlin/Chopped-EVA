@@ -2,7 +2,8 @@
 
 namespace ChoppedEVA.Settings
 {
-    public class ChoppedEvaSettings : GameParameters.CustomParameterNode
+    // ReSharper disable once InconsistentNaming
+    public class ChoppedEVASettings : GameParameters.CustomParameterNode
     {
         #region Housekeeping
 

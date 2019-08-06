@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ChoppedEVA.Handlers
+namespace ChoppedEVA.Providers
 {
-    public class ResourceHandler
+    public class ResourceProvider
     {
         public static void Add(PartModule module, string name, double amount, double? maxAmount = null)
         {

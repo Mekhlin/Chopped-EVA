@@ -1,10 +1,11 @@
 ﻿using System;
-using ChoppedEVA.Handlers;
 using ChoppedEVA.LifeSupport;
+using ChoppedEVA.Providers;
 
 namespace ChoppedEVA.Modules
 {
-    public class ChoppedEvaModule : PartModule
+    // ReSharper disable once InconsistentNaming
+    public class ModuleChoppedEVA : PartModule
     {
         #region Properties
 
@@ -20,7 +21,7 @@ namespace ChoppedEVA.Modules
             try
             {
                 if (!vessel.loaded || vessel.isEVA == false) return;
-                SettingsHandler.ApplySettings(this);
+                SettingsProvider.ApplySettings(this);
                 Logging.Log($"{vessel.name} is on EVA");
                 UpdateResourceAmount();
             }

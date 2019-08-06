@@ -3,16 +3,16 @@ using ChoppedEVA.LifeSupport;
 using ChoppedEVA.Modules;
 using ChoppedEVA.Settings;
 
-namespace ChoppedEVA.Handlers
+namespace ChoppedEVA.Providers
 {
-    public static class SettingsHandler
+    public static class SettingsProvider
     {
-        public static void ApplySettings(ChoppedEvaModule evaModule)
+        public static void ApplySettings(ModuleChoppedEVA evaModule)
         {
             try
             {
                 if (evaModule == null || evaModule.part == null || !evaModule.vessel.loaded) return;
-                var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEvaSettings>();
+                var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEVASettings>();
                 if (!settings.EnableLifeSupport) return;
                 evaModule.EnableLifeSupport = settings.EnableLifeSupport;
                 evaModule.ReportMissing = settings.ReportMissing;
@@ -21,9 +21,9 @@ namespace ChoppedEVA.Handlers
                 var oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
                 var carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
                 evaModule.ResourceInfo = new ResourceDef(ResourceNames.Oxygen, oxygenPerSec);
-                ResourceHandler.Add(evaModule, ResourceNames.Oxygen, settings.OxygenAmount);
+                ResourceProvider.Add(evaModule, ResourceNames.Oxygen, settings.OxygenAmount);
                 evaModule.OutputResourceInfo = new ResourceDef(ResourceNames.CarbonDioxide, carbonDioxidePerSec);
-                ResourceHandler.Add(evaModule, ResourceNames.CarbonDioxide, 0, settings.OxygenAmount * carbonDioxidePerSec);
+                ResourceProvider.Add(evaModule, ResourceNames.CarbonDioxide, 0, settings.OxygenAmount * carbonDioxidePerSec);
             }
             catch (Exception ex)
             {
