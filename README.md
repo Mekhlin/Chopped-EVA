@@ -1,7 +1,5 @@
 # Chopped EVA
-[![License](https://img.shields.io/github/license/Mekhlin/ChoppedEVA.svg)](https://raw.githubusercontent.com/Mekhlin/ChoppedEVA/master/LICENSE)
 ![AppVeyor status](https://img.shields.io/appveyor/ci/TangChr/choppedeva.svg?logo=appveyor&logoColor=white)
-[![Release](https://img.shields.io/github/release/Mekhlin/ChoppedEVA.svg?logo=github)](https://github.com/Mekhlin/ChoppedEVA/releases/latest)
 
 A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
 
