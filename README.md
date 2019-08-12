@@ -1,5 +1,4 @@
 # Chopped EVA
-![AppVeyor status](https://img.shields.io/appveyor/ci/TangChr/choppedeva.svg?logo=appveyor&logoColor=white)
 
 A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
 
