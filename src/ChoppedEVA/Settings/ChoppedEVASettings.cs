@@ -21,8 +21,8 @@ namespace ChoppedEVA.Settings
         [GameParameters.CustomParameterUI("Enable EVA life support", toolTip = "Can kerbals be killed during EVA", autoPersistance = true, gameMode = GameParameters.GameMode.ANY)]
         public bool EnableLifeSupport = false;
 
-        [GameParameters.CustomParameterUI("Missing kerbals", toolTip = "Kerbals will be marked as missing, instead of dead", autoPersistance = true, gameMode = GameParameters.GameMode.ANY)]
-        public bool ReportMissing = false;
+        [GameParameters.CustomParameterUI("Respawn kerbals", toolTip = "Kerbals will be marked as missing, instead of dead", autoPersistance = true, gameMode = GameParameters.GameMode.ANY)]
+        public bool Respawn = false;
 
         [GameParameters.CustomIntParameterUI("Oxygen", maxValue = 1000, minValue = 200, stepSize = 10, toolTip = "Amount of oxygen", autoPersistance = true)]
         public int OxygenAmount = 700;

@@ -5,21 +5,21 @@ namespace ChoppedEVA
 {
     public static class Logging
     {
-        private static readonly string Prefix = $"[{nameof(ChoppedEVA)}] ";
+        private static object Message(string text) => $"[{nameof(ChoppedEVA)}] {text}";
 
-        public static void Log(object message)
+        public static void Log(string message)
         {
-            Debug.Log(Prefix + message);
+            Debug.Log(Message(message));
         }
 
-        public static void Warning(object message)
+        public static void Warning(string message)
         {
-            Debug.LogWarning(Prefix + message);
+            Debug.LogWarning(Message(message));
         }
 
-        public static void Error(object message)
+        public static void Error(string message)
         {
-            Debug.LogError(Prefix + message);
+            Debug.LogError(Message(message));
         }
 
         public static void Error(string message, Exception ex)
