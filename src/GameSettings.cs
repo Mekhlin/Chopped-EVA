@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace ChoppedEVA.Settings
+namespace ChoppedEVA
 {
     // ReSharper disable once InconsistentNaming
     public class ChoppedEVASettings : GameParameters.CustomParameterNode

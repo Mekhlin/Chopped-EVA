@@ -1,7 +1,6 @@
 ﻿using System;
-using ChoppedEVA.Providers;
 
-namespace ChoppedEVA.Modules
+namespace ChoppedEVA
 {
     public class ChoppedModule : PartModule
     {

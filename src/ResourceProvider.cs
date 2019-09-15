@@ -1,9 +1,7 @@
 ﻿using System;
-using ChoppedEVA.Modules;
-using ChoppedEVA.Settings;
 using UniLinq;
 
-namespace ChoppedEVA.Providers
+namespace ChoppedEVA
 {
     public class ResourceProvider
     {

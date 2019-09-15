@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Linq;
-using ChoppedEVA.LifeSupport;
-using ChoppedEVA.Providers;
-using ChoppedEVA.Settings;
 
 namespace ChoppedEVA
 {
@@ -68,7 +65,7 @@ namespace ChoppedEVA
             var oxygen = part.Resources[ResourceProvider.Resource.Oxygen];
             if (oxygen == null) return;
             if (oxygen.amount <= _oxygenPerSec)
-                CrewChopper.Chop(vessel, _respawn);
+                Chop(vessel, _respawn);
             else
             {
                 oxygen.amount -= _oxygenPerSec;
@@ -85,6 +82,28 @@ namespace ChoppedEVA
 
             var crewMember = crewMembers[0];
             return crewMember.hasHelmetOn;
+        }
+
+        public static void Chop(Vessel vessel, bool respawn)
+        {
+            try
+            {
+                var part = vessel.parts.First();
+                if (part == null || !vessel.loaded) return;
+
+                var crewMembers = vessel.GetVesselCrew().ToArray();
+                if (crewMembers.Length != 1) return;
+
+                var doomed = crewMembers[0];
+                ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+                doomed.rosterStatus = respawn ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
+                part.Die();
+                Logging.Log($"{vessel.name} has run out of Life Support");
+            }
+            catch (Exception ex)
+            {
+                Logging.Error("Failed to chop kerbal", ex);
+            }
         }
     }
 }
