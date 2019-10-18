@@ -18,4 +18,3 @@ Installation
 Requires
 ----------------------------
 * KSP version 1.4.5 or later
-* [Module Manager](https://github.com/sarbian/ModuleManager/releases)
