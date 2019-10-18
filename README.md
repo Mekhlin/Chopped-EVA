@@ -1,12 +1,12 @@
 # Chopped EVA
 
-A lightweight EVA Life Support mod for [Kerbal Space Program](https://www.kerbalspaceprogram.com).
+A lightweight EVA Life Support mod for Kerbal Space Program.
 
 Features
 ----------------------------
-* EVA life support based on oxygen and carbon dioxide
+* EVA life support based on electric charge
 * Option to mark kerbals as missing instead of killed (when life support has run out).
-* Kerbals will not use oxygen if helmet is off.
+* Kerbals will not use electricity if helmet is off.
 
 Installation
 ----------------------------
@@ -19,4 +19,3 @@ Requires
 ----------------------------
 * KSP version 1.4.5 or later
 * [Module Manager](https://github.com/sarbian/ModuleManager/releases)
-* [Community Resource Pack](https://github.com/BobPalmer/CommunityResourcePack/releases)

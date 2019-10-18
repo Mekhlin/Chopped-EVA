@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-
+// ReSharper disable UnusedMember.Global
 namespace ChoppedEVA
 {
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.FLIGHT, GameScenes.SPACECENTER, GameScenes.TRACKSTATION)]
-    public class ChoppedScenario : ScenarioModule
+    public class EvaScenario : ScenarioModule
     {
         #region Housekeeping
 
@@ -14,20 +14,17 @@ namespace ChoppedEVA
         #endregion
 
         private bool _enableLifeSupport;
-        private double _oxygenPerSec;
-        private double _carbonDioxidePerSec;
+        private double _dischargePerSec;
         private bool _respawn;
 
         public override void OnLoad(ConfigNode node)
         {
             var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEVASettings>();
             _enableLifeSupport = settings.EnableLifeSupport;
-            _oxygenPerSec = Convert.ToDouble(settings.OxygenPerSec);
-            _carbonDioxidePerSec = Convert.ToDouble(settings.CarbonDioxidePerSec);
+            _dischargePerSec = Convert.ToDouble(settings.DischargePerSec);
             _respawn = settings.Respawn;
         }
 
-        // ReSharper disable once UnusedMember.Global
         public void FixedUpdate()
         {
             try
@@ -47,31 +44,28 @@ namespace ChoppedEVA
                 {
                     if (vessel.isEVA == false) continue;
                     if (HasHelmetOn(vessel))
-                        ConsumeOxygen(vessel);
+                        ConsumeCharge(vessel);
                 }
             }
             catch (Exception ex)
             {
-                Logging.Error($"{nameof(ChoppedScenario)}.{nameof(FixedUpdate)} - Failed to update scenario", ex);
+                Logging.Error($"{nameof(EvaScenario)}.{nameof(FixedUpdate)} - Failed to update scenario", ex);
             }
         }
 
-        private void ConsumeOxygen(Vessel vessel)
+        private void ConsumeCharge(Vessel vessel)
         {
-            if (vessel.loaded == false) return;
+            if (!(vessel is object)) return;
             var part = vessel.Parts.FirstOrDefault();
-            if (part == null) return;
+            if (!(part is object)) return;
 
-            var oxygen = part.Resources[ResourceProvider.Resource.Oxygen];
-            if (oxygen == null) return;
-            if (oxygen.amount <= _oxygenPerSec)
+            var ec = part.Resources[ResourceProvider.ElectricCharge];
+            if (ec == null) return;
+            if (ec.amount <= _dischargePerSec)
                 Chop(vessel, _respawn);
             else
             {
-                oxygen.amount -= _oxygenPerSec;
-                var carbonDioxide = part.Resources[ResourceProvider.Resource.CarbonDioxide];
-                if (carbonDioxide is object)
-                    carbonDioxide.amount += _carbonDioxidePerSec;
+                ec.amount -= _dischargePerSec;
             }
         }
 
@@ -88,8 +82,9 @@ namespace ChoppedEVA
         {
             try
             {
-                var part = vessel.parts.First();
-                if (part == null || !vessel.loaded) return;
+                if (!(vessel is object)) return;
+                var part = vessel.Parts.FirstOrDefault();
+                if (!(part is object)) return;
 
                 var crewMembers = vessel.GetVesselCrew().ToArray();
                 if (crewMembers.Length != 1) return;
