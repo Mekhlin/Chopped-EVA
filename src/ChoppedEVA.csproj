@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChoppedManager.cs" />
+    <Compile Include="ChoppedMessenger.cs" />
     <Compile Include="ChoppedScenario.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="Logging.cs" />

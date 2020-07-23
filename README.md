@@ -1,10 +1,13 @@
 # Chopped EVA
 
+![GitHub release](https://img.shields.io/github/v/release/Mekhlin/KSP-ChoppedEVA)
+![AppVeyor status](https://img.shields.io/appveyor/build/TangChr/choppedeva?logo=appveyor&logoColor=fff)
+
 A lightweight EVA Life Support mod for Kerbal Space Program.
 
 Features
 ----------------------------
-* EVA life support based on electric charge
+* EVA life support based on electric charge (to avoid dependencies).
 * Option to mark kerbals as missing instead of killed (when life support has run out).
 * Kerbals will not use electricity if helmet is off.
 
@@ -17,4 +20,4 @@ Installation
 
 Requires
 ----------------------------
-* KSP version 1.4.5 or later
+* KSP version 1.4.5 or later.

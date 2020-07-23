@@ -8,6 +8,11 @@ namespace ChoppedEVA
         {
             GameEvents.onCrewOnEva.Remove(OnEvaStart);
             GameEvents.onCrewOnEva.Add(OnEvaStart);
+            GameEvents.onVesselSituationChange.Add(Testy);
+        }
+
+        private void Testy(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> data)
+        {
         }
 
         public void OnDestroy()

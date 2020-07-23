@@ -36,14 +36,18 @@ namespace ChoppedEVA
                     return;
                 }
                 var elapsedTime = Planetarium.GetUniversalTime() - _cycleStartTime;
+
                 if (elapsedTime < SecondsPerCycle)
+                {
                     return;
+                }
+
                 _cycleStartTime = Planetarium.GetUniversalTime();
 
                 foreach (var vessel in FlightGlobals.Vessels)
                 {
                     if (vessel.isEVA == false) continue;
-                    if (HasHelmetOn(vessel))
+                    if (IsHelmetOn(vessel))
                         ConsumeCharge(vessel);
                 }
             }
@@ -69,7 +73,7 @@ namespace ChoppedEVA
             }
         }
 
-        private bool HasHelmetOn(Vessel vessel)
+        private bool IsHelmetOn(Vessel vessel)
         {
             var crewMembers = vessel.GetVesselCrew().ToArray();
             if (crewMembers.Length != 1) return true;
@@ -91,6 +95,9 @@ namespace ChoppedEVA
 
                 var doomed = crewMembers[0];
                 ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+                ChoppedMessenger.SendEulogy(doomed);
+
+                // Kill kerbal
                 doomed.rosterStatus = respawn ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
                 part.Die();
                 Logging.Log($"{vessel.name} has run out of Life Support");
