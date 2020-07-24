@@ -4,19 +4,15 @@ namespace ChoppedEVA
 {
     internal static class ChoppedMessenger
     {
-        public static void SendEulogy(ProtoCrewMember kerbal)
+        public static void NotifyDeath(ProtoCrewMember kerbal)
         {
-            const string title = "Eulogy";
-            var text = $"Sadly {kerbal.name} has died while on EVA. {GenderText(kerbal)} will be remembered";
-            const MessageSystemButton.MessageButtonColor color = MessageSystemButton.MessageButtonColor.ORANGE;
+            var title = $"{kerbal.name} has died";
+            var text = $"{kerbal.name} has died while on EVA.";
+            const MessageSystemButton.MessageButtonColor color = MessageSystemButton.MessageButtonColor.RED;
             const MessageSystemButton.ButtonIcons icon = MessageSystemButton.ButtonIcons.FAIL;
             var message = new MessageSystem.Message(title, text, color, icon);
 
             MessageSystem.Instance.AddMessage(message);
-
-            
         }
-
-        internal static string GenderText(ProtoCrewMember kerbal) => kerbal.gender == ProtoCrewMember.Gender.Male ? "He" : "She";
     }
 }

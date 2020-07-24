@@ -1,6 +1,6 @@
 ﻿namespace ChoppedEVA
 {
-    public static class ResourceProvider
+    internal static class ResourceProvider
     {
         public const string ElectricCharge = "ElectricCharge";
 

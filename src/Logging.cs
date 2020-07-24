@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ChoppedEVA
 {
-    public static class Logging
+    internal static class Logging
     {
         private static object Message(string text) => $"[{nameof(ChoppedEVA)}] {text}";
 

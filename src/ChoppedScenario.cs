@@ -16,6 +16,7 @@ namespace ChoppedEVA
         private bool _enableLifeSupport;
         private double _dischargePerSec;
         private bool _respawn;
+        private static bool _notifyDeath;
 
         public override void OnLoad(ConfigNode node)
         {
@@ -23,6 +24,7 @@ namespace ChoppedEVA
             _enableLifeSupport = settings.EnableLifeSupport;
             _dischargePerSec = Convert.ToDouble(settings.DischargePerSec);
             _respawn = settings.Respawn;
+            _notifyDeath = settings.NotifyDeath;
         }
 
         public void FixedUpdate()
@@ -94,13 +96,17 @@ namespace ChoppedEVA
                 if (crewMembers.Length != 1) return;
 
                 var doomed = crewMembers[0];
-                ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
-                ChoppedMessenger.SendEulogy(doomed);
 
                 // Kill kerbal
                 doomed.rosterStatus = respawn ? ProtoCrewMember.RosterStatus.Missing : ProtoCrewMember.RosterStatus.Dead;
                 part.Die();
                 Logging.Log($"{vessel.name} has run out of Life Support");
+
+                ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+                if (_notifyDeath)
+                {
+                    ChoppedMessenger.NotifyDeath(doomed);
+                }
             }
             catch (Exception ex)
             {
