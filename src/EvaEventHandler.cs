@@ -2,25 +2,20 @@
 namespace ChoppedEVA
 {
     [KSPAddon(KSPAddon.Startup.AllGameScenes, false)]
-    internal class ChoppedManager : BlankMonoBehaviour
+    internal class EvaEventHandler : BlankMonoBehaviour
     {
         public void Awake()
         {
-            GameEvents.onCrewOnEva.Remove(OnEvaStart);
-            GameEvents.onCrewOnEva.Add(OnEvaStart);
-            GameEvents.onVesselSituationChange.Add(Testy);
-        }
-
-        private void Testy(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> data)
-        {
+            GameEvents.onCrewOnEva.Remove(CrewOnEva);
+            GameEvents.onCrewOnEva.Add(CrewOnEva);
         }
 
         public void OnDestroy()
         {
-            GameEvents.onCrewOnEva.Remove(OnEvaStart);
+            GameEvents.onCrewOnEva.Remove(CrewOnEva);
         }
 
-        private void OnEvaStart(GameEvents.FromToAction<Part, Part> data)
+        private void CrewOnEva(GameEvents.FromToAction<Part, Part> data)
         {
             var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEVASettings>();
             if (data.to.isVesselEVA == false || settings.EnableLifeSupport == false)

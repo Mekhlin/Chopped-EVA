@@ -48,9 +48,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChoppedManager.cs" />
-    <Compile Include="ChoppedMessenger.cs" />
-    <Compile Include="ChoppedScenario.cs" />
+    <Compile Include="EvaEventHandler.cs" />
+    <Compile Include="ChoppedEvaMessenger.cs" />
+    <Compile Include="ChoppedEvaScenario.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

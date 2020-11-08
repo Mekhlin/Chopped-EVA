@@ -7,9 +7,9 @@ namespace ChoppedEVA
     {
         #region Housekeeping
 
-        public override string Title { get; } = "Chopped EVA settings";
-        public override string Section { get; } = "Chopped EVA";
-        public override string DisplaySection { get; } = "Chopped EVA";
+        public override string Title { get; } = "EVA Life Support";
+        public override string Section { get; } = "EvaSettings";
+        public override string DisplaySection { get; } = "EVA Settings";
         public override int SectionOrder { get; } = 3;
         public override GameParameters.GameMode GameMode { get; } = GameParameters.GameMode.ANY;
         public override bool HasPresets { get; } = false;

@@ -105,7 +105,7 @@ namespace ChoppedEVA
                 ScreenMessages.PostScreenMessage($"{doomed.name} has run out of Life Support", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                 if (_notifyDeath)
                 {
-                    ChoppedMessenger.NotifyDeath(doomed);
+                    ChoppedEvaMessenger.NotifyDeath(doomed);
                 }
             }
             catch (Exception ex)

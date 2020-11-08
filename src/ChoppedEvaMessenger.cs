@@ -2,7 +2,7 @@
 
 namespace ChoppedEVA
 {
-    internal static class ChoppedMessenger
+    internal static class ChoppedEvaMessenger
     {
         public static void NotifyDeath(ProtoCrewMember kerbal)
         {
