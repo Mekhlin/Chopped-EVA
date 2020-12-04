@@ -1,6 +1,6 @@
 # Chopped EVA
 
-![GitHub release](https://img.shields.io/github/v/release/Mekhlin/KSP-ChoppedEVA)
+![GitHub release](https://img.shields.io/github/v/release/Mekhlin/KSP-ChoppedEVA?logo=github)
 ![AppVeyor status](https://img.shields.io/appveyor/build/TangChr/choppedeva?logo=appveyor&logoColor=fff)
 
 A lightweight EVA Life Support mod for Kerbal Space Program.
