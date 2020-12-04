@@ -2,7 +2,7 @@
 {
     internal static class ResourceProvider
     {
-        public const string ElectricCharge = "ElectricCharge";
+        public const string LifeSupport = "EvaLifeSupport";
 
         public static ConfigNode CreateResource(string name, int amount, int? maxAmount = null)
         {

@@ -14,7 +14,7 @@ namespace ChoppedEVA
         #endregion
 
         private bool _enableLifeSupport;
-        private double _dischargePerSec;
+        private double _lifeSupportPerSec;
         private bool _respawn;
         private static bool _notifyDeath;
 
@@ -22,7 +22,7 @@ namespace ChoppedEVA
         {
             var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEVASettings>();
             _enableLifeSupport = settings.EnableLifeSupport;
-            _dischargePerSec = Convert.ToDouble(settings.DischargePerSec);
+            _lifeSupportPerSec = Convert.ToDouble(settings.LifeSupportPerSec);
             _respawn = settings.Respawn;
             _notifyDeath = settings.NotifyDeath;
         }
@@ -50,7 +50,7 @@ namespace ChoppedEVA
                 {
                     if (vessel.isEVA == false) continue;
                     if (IsHelmetOn(vessel))
-                        ConsumeCharge(vessel);
+                        ConsumeLifeSupport(vessel);
                 }
             }
             catch (Exception ex)
@@ -59,19 +59,19 @@ namespace ChoppedEVA
             }
         }
 
-        private void ConsumeCharge(Vessel vessel)
+        private void ConsumeLifeSupport(Vessel vessel)
         {
             if (!(vessel is object)) return;
             var part = vessel.Parts.FirstOrDefault();
             if (!(part is object)) return;
 
-            var ec = part.Resources[ResourceProvider.ElectricCharge];
+            var ec = part.Resources[ResourceProvider.LifeSupport];
             if (ec == null) return;
-            if (ec.amount <= _dischargePerSec)
+            if (ec.amount <= _lifeSupportPerSec)
                 Chop(vessel, _respawn);
             else
             {
-                ec.amount -= _dischargePerSec;
+                ec.amount -= _lifeSupportPerSec;
             }
         }
 

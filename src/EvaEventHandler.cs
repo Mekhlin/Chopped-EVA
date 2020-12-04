@@ -23,8 +23,8 @@ namespace ChoppedEVA
                 return;
             }
 
-            var electricCharge = ResourceProvider.CreateResource(ResourceProvider.ElectricCharge, settings.ElectricCharge);
-            data.to.AddResource(electricCharge);
+            var lifeSupport = ResourceProvider.CreateResource(ResourceProvider.LifeSupport, settings.LifeSupport);
+            data.to.AddResource(lifeSupport);
         }
     }
 }

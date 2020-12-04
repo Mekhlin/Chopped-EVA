@@ -7,7 +7,7 @@ A lightweight EVA Life Support mod for Kerbal Space Program.
 
 Features
 ----------------------------
-* EVA life support based on electric charge (to avoid dependencies).
+* Introduces a new resource called *Life Support*.
 * Option to mark kerbals as missing instead of killed (when life support has run out).
 * Kerbals will not use electricity if helmet is off.
 

@@ -24,11 +24,11 @@ namespace ChoppedEVA
         [GameParameters.CustomParameterUI("Respawn kerbals", toolTip = "Kerbals will be marked as missing, instead of dead", autoPersistance = true)]
         public bool Respawn = false;
 
-        [GameParameters.CustomIntParameterUI("Electric charge", maxValue = 1000, minValue = 200, stepSize = 10, toolTip = "Amount of electricity", autoPersistance = true)]
-        public int ElectricCharge = 700;
+        [GameParameters.CustomIntParameterUI("Life Support", maxValue = 1000, minValue = 200, stepSize = 10, toolTip = "Amount of life support available on EVA", autoPersistance = true)]
+        public int LifeSupport = 700;
 
-        [GameParameters.CustomFloatParameterUI("Discharge per second", toolTip = "Electric charge consumed per second", minValue = 0.4f, maxValue = 1.0f, asPercentage = false, displayFormat = "0.0")]
-        public float DischargePerSec = 0.7f;
+        [GameParameters.CustomFloatParameterUI("Life Support per second", toolTip = "Life support consumed per second", minValue = 0.4f, maxValue = 1.0f, asPercentage = false, displayFormat = "0.0")]
+        public float LifeSupportPerSec = 0.7f;
         
         [GameParameters.CustomParameterUI("Notify death", toolTip = "Send a message when a kerbal dies", autoPersistance = true)]
         public bool NotifyDeath = false;
