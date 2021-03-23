@@ -15,7 +15,7 @@ namespace ChoppedEVA
             GameEvents.onCrewOnEva.Remove(CrewOnEva);
         }
 
-        private void CrewOnEva(GameEvents.FromToAction<Part, Part> data)
+        private static void CrewOnEva(GameEvents.FromToAction<Part, Part> data)
         {
             var settings = HighLogic.CurrentGame.Parameters.CustomParams<ChoppedEVASettings>();
             if (data.to.isVesselEVA == false || settings.EnableLifeSupport == false)

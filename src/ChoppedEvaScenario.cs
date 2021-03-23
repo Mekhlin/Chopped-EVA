@@ -31,7 +31,11 @@ namespace ChoppedEVA
         {
             try
             {
-                if (_enableLifeSupport == false) return;
+                if (_enableLifeSupport == false)
+                {
+                    return;
+                }
+
                 if (_cycleStartTime.Equals(0))
                 {
                     _cycleStartTime = Planetarium.GetUniversalTime();
@@ -46,11 +50,18 @@ namespace ChoppedEVA
 
                 _cycleStartTime = Planetarium.GetUniversalTime();
 
+                // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
                 foreach (var vessel in FlightGlobals.Vessels)
                 {
-                    if (vessel.isEVA == false) continue;
+                    if (vessel.isEVA == false)
+                    {
+                        continue;
+                    }
+
                     if (IsHelmetOn(vessel))
+                    {
                         ConsumeLifeSupport(vessel);
+                    }
                 }
             }
             catch (Exception ex)
@@ -61,24 +72,30 @@ namespace ChoppedEVA
 
         private void ConsumeLifeSupport(Vessel vessel)
         {
-            if (!(vessel is object)) return;
-            var part = vessel.Parts.FirstOrDefault();
-            if (!(part is object)) return;
+            var part = vessel?.Parts.FirstOrDefault();
+            var lifeSupport = part?.Resources[ResourceProvider.LifeSupport];
+            if (lifeSupport is null)
+            {
+                return;
+            }
 
-            var ec = part.Resources[ResourceProvider.LifeSupport];
-            if (ec == null) return;
-            if (ec.amount <= _lifeSupportPerSec)
+            if (lifeSupport.amount <= _lifeSupportPerSec)
+            {
                 Chop(vessel, _respawn);
+            }
             else
             {
-                ec.amount -= _lifeSupportPerSec;
+                lifeSupport.amount -= _lifeSupportPerSec;
             }
         }
 
         private bool IsHelmetOn(Vessel vessel)
         {
             var crewMembers = vessel.GetVesselCrew().ToArray();
-            if (crewMembers.Length != 1) return true;
+            if (crewMembers.Length != 1)
+            {
+                return true;
+            }
 
             var crewMember = crewMembers[0];
             return crewMember.hasHelmetOn;
@@ -88,12 +105,17 @@ namespace ChoppedEVA
         {
             try
             {
-                if (!(vessel is object)) return;
-                var part = vessel.Parts.FirstOrDefault();
-                if (!(part is object)) return;
+                var part = vessel?.Parts.FirstOrDefault();
+                if (part is null)
+                {
+                    return;
+                }
 
                 var crewMembers = vessel.GetVesselCrew().ToArray();
-                if (crewMembers.Length != 1) return;
+                if (crewMembers.Length != 1)
+                {
+                    return;
+                }
 
                 var doomed = crewMembers[0];
 
